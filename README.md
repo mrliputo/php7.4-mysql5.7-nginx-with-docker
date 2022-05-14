@@ -1,9 +1,9 @@
 # PHP 7.4, MySQL 5.7 and Nginx with Docker
 
-If you need to create and PHP-MYSQL-NGINX environment in your machine, you only have to clone this repositorio and run:
+If you need to setup a PHP-MYSQL-NGINX environment in your machine, you only have to clone this repositorio and run:
 
 ~~~sh
-docker-compose -f "docker-compose.yml" up -d --build
+docker-compose up -d
 ~~~
 
 Then just go to http://localhost:8780/ for the "Hello World" message :).
@@ -16,7 +16,7 @@ The `app` folder will contain all the code of your site. In this folder `nginx` 
 
 ### The "volumes" folder
 
-This folder constains all the info of the containers that we need to touch.
+This folder constains all the info of the containers that we need to touch or backup
 
 #### volumes > mysql
 
