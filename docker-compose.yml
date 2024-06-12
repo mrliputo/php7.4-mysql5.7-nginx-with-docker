@@ -1,4 +1,5 @@
 version: '2.0'
+
 services:
 
   app:
@@ -6,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: cloudsigma.com/php
-    container_name: your_site_app
+    container_name: partojambe
     restart: unless-stopped
     tty: true
     environment:
@@ -14,21 +15,21 @@ services:
       SERVICE_TAGS: dev
     working_dir: /var/www/html/
     volumes:
-      - ./app/:/var/www/html
-      - ./volumes/php/your_site.ini:/usr/local/etc/php/conf.d/your_site.ini
+      - /var/www/production-partojambe/safe-area:/var/www/html
+      - ./volumes/php/partojambe.ini:/usr/local/etc/php/conf.d/partojambe.ini
     networks:
       - app-network
 
   webserver:
     image: nginx:alpine
-    container_name: your_site_webserver
+    container_name: partojambe_webserver
     restart: unless-stopped
     tty: true
     ports:
       - "8780:80"
       - "8443:443"
     volumes:
-      - ./app/:/var/www/html/
+      - /var/www/production-partojambe/safe-area:/var/www/html/
       - ./volumes/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - app-network
